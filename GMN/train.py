@@ -7,8 +7,11 @@ import torch.nn as nn
 import collections
 import time
 import os
+import logging
 
-# Set GPU
+torch.autograd.set_detect_anomaly(True)
+
+logging.basicConfig(level=logging.INFO,filename="log/train.log",format='%(asctime)s - %(levelname)s - %(message)s')# Set GPU
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 use_cuda = torch.cuda.is_available()
@@ -95,6 +98,9 @@ for i_iter in range(config['training']['n_training_steps']):
 
     optimizer.zero_grad()
     loss.backward(torch.ones_like(loss))  #
+    logging.info("Loss after backward:", loss)
+    logging.info("Loss gradients after backward:", loss.grad)
+
     nn.utils.clip_grad_value_(model.parameters(), config['training']['clip_value'])
     optimizer.step()
 
