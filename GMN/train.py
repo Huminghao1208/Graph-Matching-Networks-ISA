@@ -8,19 +8,26 @@ import collections
 import time
 import os
 import logging
+from datetime import datetime
 
 torch.autograd.set_detect_anomaly(True)
 
+#The code to setup the log file
+current_date = datetime.now().strftime("%Y%m%d")
+random_num = random.randint(1000, 9999)
+log_folder = f"log/train_{current_date}_{random_num}"
+os.makedirs(log_folder, exist_ok=True)
+log_file = os.path.join(log_folder, "train.log")
 logging.basicConfig(level=logging.INFO,filename="log/train.log",format='%(asctime)s - %(levelname)s - %(message)s')# Set GPU
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda:0' if use_cuda else 'cpu')
 
-# Print configure
+# logging.info configure
 config = get_default_config()
 for (k, v) in config.items():
-    print("%s= %s" % (k, v))
+    logging.info("%s= %s" % (k, v))
 
 # Set random seeds
 seed = config['seed']
@@ -29,7 +36,6 @@ np.random.seed(seed + 1)
 torch.manual_seed(seed + 2)
 torch.backends.cudnn.deterministic = False
 torch.backends.cudnn.benchmark = True
-
 
 training_set, validation_set = build_datasets(config)
 
@@ -98,8 +104,8 @@ for i_iter in range(config['training']['n_training_steps']):
 
     optimizer.zero_grad()
     loss.backward(torch.ones_like(loss))  #
-    logging.info("Loss after backward:", loss)
-    logging.info("Loss gradients after backward:", loss.grad)
+    #logging.info("Loss after backward:%.4f", loss.mean().item())
+    #logging.info("Loss gradients after backward:", loss.grad)
 
     nn.utils.clip_grad_value_(model.parameters(), config['training']['clip_value'])
     optimizer.step()
@@ -112,15 +118,15 @@ for i_iter in range(config['training']['n_training_steps']):
 
 
     # evaluation
-    if (i_iter + 1) % config['training']['print_after'] == 0:
-        metrics_to_print = {
+    if (i_iter + 1) % config['training'].get('logging.info_after', 100) == 0:
+        metrics_to_log= {
             k: torch.mean(v[0]) for k, v in accumulated_metrics.items()}
         info_str = ', '.join(
-            ['%s %.4f' % (k, v) for k, v in metrics_to_print.items()])
+            ['%s %.4f' % (k, v) for k, v in metrics_to_log.items()])
         # reset the metrics
         accumulated_metrics = collections.defaultdict(list)
 
-        if ((i_iter + 1) // config['training']['print_after'] %
+        if ((i_iter + 1) // config['training'].get('logging.info_after', 100) %
                 config['training']['eval_after'] == 0):
             model.eval()
             with torch.no_grad():
@@ -156,6 +162,6 @@ for i_iter in range(config['training']['n_training_steps']):
                 info_str += ', ' + ', '.join(
                     ['%s %.4f' % ('val/' + k, v) for k, v in eval_metrics.items()])
             model.train()
-        print('iter %d, %s, time %.2fs' % (
+        logging.info('iter %d, %s, time %.2fs' % (
             i_iter + 1, info_str, time.time() - t_start))
         t_start = time.time()

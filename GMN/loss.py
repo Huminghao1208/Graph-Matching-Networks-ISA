@@ -1,15 +1,12 @@
 import torch
 
-
 def euclidean_distance(x, y):
     """This is the squared Euclidean distance."""
     return torch.sum((x - y) ** 2, dim=-1)
 
-
 def approximate_hamming_similarity(x, y):
     """Approximate Hamming similarity."""
     return torch.mean(torch.tanh(x) * torch.tanh(y), dim=1)
-
 
 def pairwise_loss(x, y, labels, loss_type='margin', margin=1.0):
     """Compute pairwise loss.
@@ -29,7 +26,12 @@ def pairwise_loss(x, y, labels, loss_type='margin', margin=1.0):
     labels = labels.float()
 
     if loss_type == 'margin':
-        return torch.relu(margin - labels * (1 - euclidean_distance(x, y)))
+        euclidean_dist = euclidean_distance(x, y)
+        loss = margin - labels * (1 - euclidean_dist)
+        #loss = torch.nn.functional.relu(loss.clone())
+        loss = torch.max(loss, torch.zeros_like(loss))
+        return loss
+        #return torch.nn.functional.relu(margin - labels * (1 - euclidean_distance(x, y)))
     elif loss_type == 'hamming':
         return 0.25 * (labels - approximate_hamming_similarity(x, y)) ** 2
     else:
@@ -56,7 +58,7 @@ def triplet_loss(x_1, y, x_2, z, loss_type='margin', margin=1.0):
       loss: [N] float tensor.  Loss for each pair of representations.
     """
     if loss_type == 'margin':
-        return torch.relu(margin +
+        return torch.nn.functional.relu(margin +
                           euclidean_distance(x_1, y) -
                           euclidean_distance(x_2, z))
     elif loss_type == 'hamming':
