@@ -39,7 +39,7 @@ torch.backends.cudnn.benchmark = True
 
 training_set, validation_set = build_datasets(config)
 
-if config['training']['mode'] == 'pair':
+if config['training']['mode'] == 'pair': #only consider similar or unsimilar pairs
     training_data_iter = training_set.pairs(config['training']['batch_size'])
     first_batch_graphs, _ = next(training_data_iter)
 else:

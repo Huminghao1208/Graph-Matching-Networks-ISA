@@ -72,7 +72,6 @@ def build_model(config, node_feature_dim, edge_feature_dim):
 
     return model, optimizer
 
-
 def build_datasets(config):
     """Build the training and evaluation datasets."""
     config = copy.deepcopy(config)
