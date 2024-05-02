@@ -5,6 +5,7 @@ from graphmatchingnetwork import GraphMatchingNet
 import copy
 import torch
 import random
+import logging
 
 GraphData = collections.namedtuple('GraphData', [
     'from_idx',
@@ -78,9 +79,11 @@ def build_datasets(config):
 
     if config['data']['problem'] == 'graph_edit_distance':
         dataset_params = config['data']['dataset_params']
+        logging.info(f"The dataset parameters are: {dataset_params}")
         validation_dataset_size = dataset_params['validation_dataset_size']
         del dataset_params['validation_dataset_size']
         training_set = GraphEditDistanceDataset(**dataset_params)
+        logging.info(f"The training dataset info is: {training_set}")
         dataset_params['dataset_size'] = validation_dataset_size
         validation_set = FixedGraphEditDistanceDataset(**dataset_params)
     else:

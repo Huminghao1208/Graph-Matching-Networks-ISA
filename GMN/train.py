@@ -15,10 +15,14 @@ torch.autograd.set_detect_anomaly(True)
 #The code to setup the log file
 current_date = datetime.now().strftime("%Y%m%d")
 random_num = random.randint(1000, 9999)
-log_folder = f"log/train_{current_date}_{random_num}"
-os.makedirs(log_folder, exist_ok=True)
-log_file = os.path.join(log_folder, "train.log")
-logging.basicConfig(level=logging.INFO,filename="log/train.log",format='%(asctime)s - %(levelname)s - %(message)s')# Set GPU
+#log_folder = f"log/train_{current_date}_{random_num}"
+#os.makedirs(log_folder, exist_ok=True)
+#log_file = os.path.join(log_folder, "train.log")
+log_file=f"log/train_{current_date}_{random_num}.log"
+logging.basicConfig(level=logging.INFO,filename=log_file,format='%(asctime)s - %(levelname)s - %(message)s')# Set GPU
+logging.info(f"The training begins.")
+
+
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 use_cuda = torch.cuda.is_available()
