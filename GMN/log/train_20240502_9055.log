@@ -15,3 +15,48 @@
 2024-05-02 14:17:01,295 - INFO - iter 300, loss 0.8684, sim_pos -0.3737, sim_neg -0.7568, sim_diff 0.3831, time 8.25s
 2024-05-02 14:17:09,761 - INFO - iter 400, loss 0.9102, sim_pos -0.4899, sim_neg -0.8902, sim_diff 0.4003, time 8.47s
 2024-05-02 14:17:18,021 - INFO - iter 500, loss 0.7938, sim_pos -0.5532, sim_neg -0.9998, sim_diff 0.4467, time 8.26s
+2024-05-02 14:17:26,920 - INFO - iter 600, loss 0.7465, sim_pos -0.7656, sim_neg -1.3818, sim_diff 0.6162, time 8.90s
+2024-05-02 14:17:35,665 - INFO - iter 700, loss 0.8598, sim_pos -0.7215, sim_neg -1.3365, sim_diff 0.6150, time 8.75s
+2024-05-02 14:17:43,960 - INFO - iter 800, loss 0.7998, sim_pos -0.8049, sim_neg -1.6833, sim_diff 0.8784, time 8.30s
+2024-05-02 14:17:52,175 - INFO - iter 900, loss 0.8673, sim_pos -0.4880, sim_neg -1.0855, sim_diff 0.5975, time 8.21s
+2024-05-02 14:18:02,462 - INFO - iter 1000, loss 0.9662, sim_pos -0.9262, sim_neg -1.1182, sim_diff 0.1921, val/pair_auc 0.6914, val/triplet_acc 0.6870, time 10.29s
+2024-05-02 14:18:10,762 - INFO - iter 1100, loss 0.8275, sim_pos -0.7258, sim_neg -1.2496, sim_diff 0.5238, time 8.30s
+2024-05-02 14:18:19,057 - INFO - iter 1200, loss 0.6768, sim_pos -0.4848, sim_neg -1.5660, sim_diff 1.0812, time 8.29s
+2024-05-02 14:18:27,334 - INFO - iter 1300, loss 1.0176, sim_pos -0.6986, sim_neg -0.6634, sim_diff -0.0351, time 8.28s
+2024-05-02 14:18:35,709 - INFO - iter 1400, loss 0.8578, sim_pos -0.6199, sim_neg -1.0165, sim_diff 0.3966, time 8.38s
+2024-05-02 14:18:43,968 - INFO - iter 1500, loss 0.6323, sim_pos -0.5781, sim_neg -1.4113, sim_diff 0.8332, time 8.26s
+2024-05-02 14:18:52,354 - INFO - iter 1600, loss 0.7833, sim_pos -0.5810, sim_neg -1.2248, sim_diff 0.6438, time 8.39s
+2024-05-02 14:19:00,634 - INFO - iter 1700, loss 0.6790, sim_pos -0.6826, sim_neg -1.5924, sim_diff 0.9098, time 8.28s
+2024-05-02 14:19:08,964 - INFO - iter 1800, loss 0.7980, sim_pos -0.9388, sim_neg -1.9532, sim_diff 1.0144, time 8.33s
+2024-05-02 14:19:17,320 - INFO - iter 1900, loss 0.5685, sim_pos -0.6371, sim_neg -2.0085, sim_diff 1.3714, time 8.35s
+2024-05-02 14:19:27,201 - INFO - iter 2000, loss 0.9596, sim_pos -0.9106, sim_neg -1.3727, sim_diff 0.4621, val/pair_auc 0.7342, val/triplet_acc 0.7200, time 9.88s
+2024-05-02 14:19:35,426 - INFO - iter 2100, loss 0.7713, sim_pos -0.7321, sim_neg -1.3342, sim_diff 0.6022, time 8.23s
+2024-05-02 14:19:43,808 - INFO - iter 2200, loss 0.6476, sim_pos -0.5056, sim_neg -1.3700, sim_diff 0.8644, time 8.38s
+2024-05-02 14:19:52,243 - INFO - iter 2300, loss 0.7122, sim_pos -0.8401, sim_neg -1.8329, sim_diff 0.9928, time 8.43s
+2024-05-02 14:20:00,657 - INFO - iter 2400, loss 0.7808, sim_pos -0.7613, sim_neg -1.3637, sim_diff 0.6024, time 8.41s
+2024-05-02 14:20:09,183 - INFO - iter 2500, loss 0.8006, sim_pos -0.9472, sim_neg -1.8090, sim_diff 0.8618, time 8.53s
+2024-05-02 14:20:17,627 - INFO - iter 2600, loss 0.9206, sim_pos -0.9362, sim_neg -1.1667, sim_diff 0.2305, time 8.44s
+2024-05-02 14:20:26,081 - INFO - iter 2700, loss 0.7300, sim_pos -0.7430, sim_neg -1.4382, sim_diff 0.6951, time 8.45s
+2024-05-02 14:20:34,390 - INFO - iter 2800, loss 0.7355, sim_pos -0.7039, sim_neg -1.4579, sim_diff 0.7540, time 8.31s
+2024-05-02 14:20:42,821 - INFO - iter 2900, loss 0.7743, sim_pos -0.8186, sim_neg -1.5955, sim_diff 0.7769, time 8.43s
+2024-05-02 14:20:52,707 - INFO - iter 3000, loss 0.6680, sim_pos -0.6913, sim_neg -1.6603, sim_diff 0.9690, val/pair_auc 0.7500, val/triplet_acc 0.7580, time 9.89s
+2024-05-02 14:21:01,057 - INFO - iter 3100, loss 0.7339, sim_pos -0.7529, sim_neg -1.6248, sim_diff 0.8719, time 8.35s
+2024-05-02 14:21:09,554 - INFO - iter 3200, loss 0.7430, sim_pos -0.6674, sim_neg -1.3455, sim_diff 0.6780, time 8.50s
+2024-05-02 14:21:18,079 - INFO - iter 3300, loss 0.5777, sim_pos -0.7375, sim_neg -1.9148, sim_diff 1.1773, time 8.52s
+2024-05-02 14:21:26,488 - INFO - iter 3400, loss 0.7591, sim_pos -0.7749, sim_neg -1.4680, sim_diff 0.6931, time 8.41s
+2024-05-02 14:21:34,984 - INFO - iter 3500, loss 0.7607, sim_pos -0.8998, sim_neg -1.5538, sim_diff 0.6540, time 8.49s
+2024-05-02 14:21:43,445 - INFO - iter 3600, loss 0.7203, sim_pos -0.7758, sim_neg -1.4477, sim_diff 0.6719, time 8.46s
+2024-05-02 14:21:51,898 - INFO - iter 3700, loss 0.8299, sim_pos -0.8505, sim_neg -1.3194, sim_diff 0.4690, time 8.45s
+2024-05-02 14:22:00,247 - INFO - iter 3800, loss 0.6121, sim_pos -0.7759, sim_neg -2.0383, sim_diff 1.2624, time 8.35s
+2024-05-02 14:22:08,685 - INFO - iter 3900, loss 0.5165, sim_pos -0.7977, sim_neg -1.8756, sim_diff 1.0779, time 8.44s
+2024-05-02 14:22:18,648 - INFO - iter 4000, loss 0.5274, sim_pos -0.7494, sim_neg -1.7878, sim_diff 1.0384, val/pair_auc 0.7478, val/triplet_acc 0.7630, time 9.96s
+2024-05-02 14:22:27,285 - INFO - iter 4100, loss 0.8355, sim_pos -0.6375, sim_neg -1.0480, sim_diff 0.4105, time 8.64s
+2024-05-02 14:22:35,692 - INFO - iter 4200, loss 0.7319, sim_pos -0.6588, sim_neg -1.1949, sim_diff 0.5362, time 8.41s
+2024-05-02 14:22:44,179 - INFO - iter 4300, loss 0.6555, sim_pos -0.7822, sim_neg -1.7739, sim_diff 0.9917, time 8.49s
+2024-05-02 14:22:52,754 - INFO - iter 4400, loss 0.8461, sim_pos -0.9059, sim_neg -1.3282, sim_diff 0.4223, time 8.57s
+2024-05-02 14:23:01,216 - INFO - iter 4500, loss 0.8738, sim_pos -0.8513, sim_neg -1.3936, sim_diff 0.5423, time 8.46s
+2024-05-02 14:23:09,761 - INFO - iter 4600, loss 0.7326, sim_pos -0.8969, sim_neg -1.5826, sim_diff 0.6857, time 8.54s
+2024-05-02 14:23:18,261 - INFO - iter 4700, loss 0.6072, sim_pos -0.7154, sim_neg -1.7669, sim_diff 1.0515, time 8.50s
+2024-05-02 14:23:26,951 - INFO - iter 4800, loss 0.7510, sim_pos -0.9713, sim_neg -1.7036, sim_diff 0.7323, time 8.69s
+2024-05-02 14:23:35,408 - INFO - iter 4900, loss 0.7580, sim_pos -0.9388, sim_neg -1.5092, sim_diff 0.5705, time 8.46s
+2024-05-02 14:23:45,677 - INFO - iter 5000, loss 0.6800, sim_pos -0.8077, sim_neg -1.5544, sim_diff 0.7466, val/pair_auc 0.7704, val/triplet_acc 0.7880, time 10.27s
