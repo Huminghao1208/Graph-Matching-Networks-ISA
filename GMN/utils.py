@@ -1,11 +1,52 @@
 import collections
-from dataset import GraphEditDistanceDataset, FixedGraphEditDistanceDataset
+#from dataset import GraphEditDistanceDataset, FixedGraphEditDistanceDataset
 from graphembeddingnetwork import GraphEmbeddingNet, GraphEncoder, GraphAggregator
 from graphmatchingnetwork import GraphMatchingNet
 import copy
 import torch
 import random
 import logging
+import os
+import numpy as np
+import networkx as nx
+import csv
+from dataset import GraphEditDistanceDataset, FixedGraphEditDistanceDataset
+
+##################################################################
+#The following function and class are manually added: 
+
+def read_adjacency_matrix(file_path):
+    with open(file_path, 'r') as f:
+        reader = csv.reader(f)
+        matrix = list(reader)
+    return np.array(matrix, dtype=int)
+
+def create_graph(adj_matrix):
+    G=nx.DiGraph()
+    num_nodes=adj_matrix.shape[0]
+    G.add_nodes_from(range(num_nodes))
+
+    for i in range(num_nodes):
+        for j in range(num_nodes):
+            if adj_matrix[i][j]!=0:
+                G.add_edge(i,j)
+    return G   
+
+class CustomGraphEditDistanceDataset(GraphEditDistanceDataset):
+    def __init__(self,input_folder,n_changes_positive,n_changes_negative):
+        self.graphs=[]
+        for file in os.listdir(input_folder):
+            if file.endswith('.csv'):
+                adj_matrix = read_adjacency_matrix(os.path.join(input_folder, file))
+                graph = create_graph(adj_matrix)
+                self.graphs.append(graph)
+        
+        self._k_pos = n_changes_positive
+        self._k_neg = n_changes_negative
+        self._permute = True
+    def _get_graph(self):
+        """Return a random graph from the loaded set."""
+        return random.choice(self.graphs)
 
 GraphData = collections.namedtuple('GraphData', [
     'from_idx',
@@ -86,6 +127,33 @@ def build_datasets(config):
         logging.info(f"The training dataset info is: {training_set}")
         dataset_params['dataset_size'] = validation_dataset_size
         validation_set = FixedGraphEditDistanceDataset(**dataset_params)
+    else:
+        raise ValueError('Unknown problem type: %s' % config['data']['problem'])
+    return training_set, validation_set
+
+
+def build_datasets_from_CSV(config):
+    """Build the training and evaluation datasets from CSV files"""
+    config = copy.deepcopy(config)
+
+    if config['data']['problem'] == 'graph_edit_distance':
+        dataset_params = config['data']['dataset_params']
+        input_folder = config['input_csv_folder']
+        validation_dataset_size = dataset_params['validation_dataset_size']
+        
+        training_set = CustomGraphEditDistanceDataset(
+            input_folder=input_folder,
+            n_changes_positive=dataset_params['n_changes_positive'],
+            n_changes_negative=dataset_params['n_changes_negative']
+        )
+        
+        validation_set = FixedGraphEditDistanceDataset(
+            n_nodes_range=dataset_params['n_nodes_range'],
+            p_edge_range=dataset_params['p_edge_range'],
+            n_changes_positive=dataset_params['n_changes_positive'],
+            n_changes_negative=dataset_params['n_changes_negative'],
+            dataset_size=validation_dataset_size
+        )
     else:
         raise ValueError('Unknown problem type: %s' % config['data']['problem'])
     return training_set, validation_set

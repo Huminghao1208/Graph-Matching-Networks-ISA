@@ -1,8 +1,9 @@
 
 def get_default_config():
     """The default configs."""
-    model_type = 'matching'
+    model_type = 'embedding'
     # Set to `embedding` to use the graph embedding net.
+    #alternative model_tpye: 'matching'
     node_state_dim = 32
     edge_state_dim = 16
     graph_rep_dim = 128
@@ -30,6 +31,10 @@ def get_default_config():
         prop_type=model_type)
     graph_matching_net_config = graph_embedding_net_config.copy()
     graph_matching_net_config['similarity'] = 'dotproduct'  # other: euclidean, cosine
+    """The manually added configs."""
+    ISA='x86'
+    input_folder=f"dataset/graph_adj_matrix/{ISA}"
+    
     return dict(
         encoder=dict(
             node_hidden_sizes=[node_state_dim],
@@ -48,13 +53,13 @@ def get_default_config():
             problem='graph_edit_distance',
             dataset_params=dict(
                 # always generate graphs with 20 nodes and p_edge=0.2.
-                n_nodes_range=[20, 20],
+                n_nodes_range=[200, 200],
                 p_edge_range=[0.2, 0.2],
                 n_changes_positive=1,
                 n_changes_negative=2,
                 validation_dataset_size=1000)),
         training=dict(
-            batch_size=20,
+            batch_size=50,
             learning_rate=1e-4,
             mode='pair',
             loss='margin',  # other: hamming
@@ -70,10 +75,12 @@ def get_default_config():
             # Increase this to train longer.
             n_training_steps=5000,
             # Print training information every this many training steps.
-            print_after=100,
+            print_after=500,
             # Log information after this many training steps.
-            eval_after=10),
+            eval_after=100),
         evaluation=dict(
             batch_size=20),
         seed=8,
+        #Manually added parameters
+        input_csv_folder=input_folder,
     )

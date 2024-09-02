@@ -6,6 +6,8 @@ import copy
 
 import numpy as np
 import networkx as nx
+import os
+import csv
 
 """A general Interface"""
 
@@ -322,3 +324,11 @@ class FixedGraphEditDistanceDataset(GraphEditDistanceDataset):
             packed_batch = self._pack_batch(batch_graphs)
             yield packed_batch, labels[ptr: ptr + batch_size]
             ptr += batch_size
+
+
+
+
+
+
+
+ 

@@ -42,6 +42,7 @@ torch.backends.cudnn.deterministic = False
 torch.backends.cudnn.benchmark = True
 
 training_set, validation_set = build_datasets(config)
+#training_set, validation_set = build_datasets_from_CSV(config)
 
 if config['training']['mode'] == 'pair': #only consider similar or unsimilar pairs
     training_data_iter = training_set.pairs(config['training']['batch_size'])
