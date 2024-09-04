@@ -53,13 +53,13 @@ def get_default_config():
             problem='graph_edit_distance',
             dataset_params=dict(
                 # always generate graphs with 20 nodes and p_edge=0.2.
-                n_nodes_range=[200, 200],
+                n_nodes_range=[200, 250],
                 p_edge_range=[0.2, 0.2],
                 n_changes_positive=1,
                 n_changes_negative=2,
-                validation_dataset_size=1000)),
+                validation_dataset_size=100)),
         training=dict(
-            batch_size=50,
+            batch_size=10,
             learning_rate=1e-4,
             mode='pair',
             loss='margin',  # other: hamming
@@ -73,14 +73,14 @@ def get_default_config():
             # Add gradient clipping to avoid large gradients.
             clip_value=10.0,
             # Increase this to train longer.
-            n_training_steps=5000,
+            n_training_steps=10,
             # Print training information every this many training steps.
-            print_after=500,
+            print_after=5,
             # Log information after this many training steps.
-            eval_after=100),
+            eval_after=2),
         evaluation=dict(
-            batch_size=20),
+            batch_size=80),
         seed=8,
         #Manually added parameters
-        input_csv_folder=input_folder,
+        #input_csv_folder=input_folder,
     )
