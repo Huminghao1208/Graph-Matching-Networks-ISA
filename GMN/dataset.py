@@ -102,7 +102,8 @@ class GraphEditDistanceDataset(GraphSimilarityDataset):
             p_edge_range,
             n_changes_positive,
             n_changes_negative,
-            permute=True,
+            #permute=True,
+            permute=False
     ):
         """Constructor.
     Args:
@@ -324,11 +325,3 @@ class FixedGraphEditDistanceDataset(GraphEditDistanceDataset):
             packed_batch = self._pack_batch(batch_graphs)
             yield packed_batch, labels[ptr: ptr + batch_size]
             ptr += batch_size
-
-
-
-
-
-
-
- 

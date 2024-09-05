@@ -53,7 +53,7 @@ def get_default_config():
             problem='graph_edit_distance',
             dataset_params=dict(
                 # always generate graphs with 20 nodes and p_edge=0.2.
-                n_nodes_range=[200, 250],
+                n_nodes_range=[100, 100],
                 p_edge_range=[0.2, 0.2],
                 n_changes_positive=1,
                 n_changes_negative=2,
